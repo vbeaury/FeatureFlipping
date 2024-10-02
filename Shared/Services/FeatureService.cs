@@ -1,6 +1,6 @@
 using Microsoft.FeatureManagement;
 
-namespace FeatureFlipping.Services;
+namespace Shared.Services;
 
 public class FeatureService
 {

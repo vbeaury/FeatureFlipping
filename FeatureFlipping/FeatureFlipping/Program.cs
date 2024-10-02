@@ -1,8 +1,8 @@
 using FeatureFlipping.Client.Pages;
 using FeatureFlipping.Components;
-using FeatureFlipping.Services;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.FeatureManagement;
+using Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,11 +15,9 @@ var connectionString = builder.Configuration.GetConnectionString("AppConfig");
 
 builder.Configuration.AddAzureAppConfiguration(options =>
 {
-    options.Connect(connectionString)
-        .Select("TestApp:*", LabelFilter.Null)
-        .ConfigureRefresh(refreshOptions =>
-            refreshOptions.Register("TestApp:Settings:Sentinel", refreshAll: true));
-    options.UseFeatureFlags();
+    options.Connect(connectionString);
+    options.UseFeatureFlags(featureFlagOptions =>
+        featureFlagOptions.CacheExpirationInterval = TimeSpan.FromSeconds(10));
 });
 
 builder.Services.AddAzureAppConfiguration();
@@ -46,6 +44,8 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
+
+app.UseAzureAppConfiguration();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
