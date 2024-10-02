@@ -1,14 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+      <UserSecretsId>c364a1cb-0795-4479-8bae-c620a1ed1726</UserSecretsId>
+  </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\FeatureFlipping.Client\FeatureFlipping.Client.csproj"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.8"/>
+        <PackageReference Include="Azure.Data.AppConfiguration" Version="1.5.0" />
+        <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" Version="7.3.0" />
+        <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="3.5.0" />
+        <ProjectReference Include="..\FeatureFlipping.Client\FeatureFlipping.Client.csproj" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.8" />
     </ItemGroup>
 
 </Project>

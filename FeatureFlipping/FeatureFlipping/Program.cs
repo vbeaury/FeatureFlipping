@@ -1,5 +1,8 @@
 using FeatureFlipping.Client.Pages;
 using FeatureFlipping.Components;
+using FeatureFlipping.Services;
+using Microsoft.Extensions.Configuration.AzureAppConfiguration;
+using Microsoft.FeatureManagement;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+var connectionString = builder.Configuration.GetConnectionString("AppConfig");
+
+builder.Configuration.AddAzureAppConfiguration(options =>
+{
+    options.Connect(connectionString)
+        .Select("TestApp:*", LabelFilter.Null)
+        .ConfigureRefresh(refreshOptions =>
+            refreshOptions.Register("TestApp:Settings:Sentinel", refreshAll: true));
+    options.UseFeatureFlags();
+});
+
+builder.Services.AddAzureAppConfiguration();
+
+builder.Services.AddFeatureManagement();
+builder.Services.AddScopedFeatureManagement();
+
+builder.Services.AddScoped<FeatureService>();
 
 var app = builder.Build();
 
