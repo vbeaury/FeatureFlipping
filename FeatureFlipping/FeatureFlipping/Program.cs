@@ -25,7 +25,6 @@ builder.Configuration.AddAzureAppConfiguration(options =>
 builder.Services.AddAzureAppConfiguration();
 
 builder.Services.AddFeatureManagement();
-builder.Services.AddScopedFeatureManagement();
 
 builder.Services.AddScoped<FeatureService>();
 
