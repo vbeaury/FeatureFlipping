@@ -11,7 +11,14 @@ public partial class NavMenu : ComponentBase
     
     protected override async Task OnInitializedAsync()
     {
-        _isContactFeatureEnabled = await FeatureService.IsFeatureEnabledAsync("contact-form");
+        var contactFeatureEnabled = await FeatureService.IsFeatureEnabledAsync("contact-form");
+        
+        if (contactFeatureEnabled != _isContactFeatureEnabled)
+        {
+            _isContactFeatureEnabled = contactFeatureEnabled;
+            StateHasChanged();
+        }
+        
         await base.OnInitializedAsync();
     }
 }
