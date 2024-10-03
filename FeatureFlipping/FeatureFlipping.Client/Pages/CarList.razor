@@ -19,6 +19,7 @@ else
             <th>Color</th>
             <th>Year</th>
             <th>Manufacturer</th>
+            <th>License plate</th>
         </tr>
         </thead>
         <tbody>
@@ -28,7 +29,8 @@ else
                 <td>@car.Model</td>
                 <td>@car.Color</td>
                 <td>@car.Year</td>
-                <td>@car.Manufacturer?.Name</td>
+                <td>@car.Manufacturer.Name</td>
+                <td>@car.LicensePlate</td>
             </tr>
         }
         </tbody>
