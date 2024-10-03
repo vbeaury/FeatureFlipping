@@ -2,6 +2,8 @@
 
 <h3>Car List</h3>
 
+<input @onchange="ApplyFilter" placeholder="Filter by License Plate" class="form-control mb-3" />
+
 @if (_cars == null)
 {
     <p><em>Loading...</em></p>
@@ -18,8 +20,8 @@ else
             <th>Model</th>
             <th>Color</th>
             <th>Year</th>
+            <th>License Plate</th>
             <th>Manufacturer</th>
-            <th>License plate</th>
         </tr>
         </thead>
         <tbody>
@@ -29,8 +31,8 @@ else
                 <td>@car.Model</td>
                 <td>@car.Color</td>
                 <td>@car.Year</td>
-                <td>@car.Manufacturer.Name</td>
                 <td>@car.LicensePlate</td>
+                <td>@car.Manufacturer?.Name</td>
             </tr>
         }
         </tbody>
