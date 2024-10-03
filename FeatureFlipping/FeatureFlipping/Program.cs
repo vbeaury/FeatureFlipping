@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.FeatureManagement;
 using Shared.Services;
+using Shared.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ builder.Services.AddAzureAppConfiguration();
 builder.Services.AddFeatureManagement();
 
 builder.Services.AddScoped<FeatureService>();
+builder.Services.AddScoped<ICarService, CarService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

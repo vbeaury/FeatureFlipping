@@ -1,0 +1,36 @@
+@page "/carList"
+
+<h3>Car List</h3>
+
+@if (_cars == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!_cars.Any())
+{
+    <p>No cars found.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Year</th>
+            <th>Manufacturer</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var car in _cars)
+        {
+            <tr>
+                <td>@car.Model</td>
+                <td>@car.Color</td>
+                <td>@car.Year</td>
+                <td>@car.Manufacturer?.Name</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
