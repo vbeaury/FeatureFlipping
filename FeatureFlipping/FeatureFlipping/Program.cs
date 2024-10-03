@@ -28,6 +28,8 @@ builder.Services.AddFeatureManagement();
 
 builder.Services.AddScoped<FeatureService>();
 builder.Services.AddScoped<ICarService, CarService>();
+builder.Services.AddSingleton<IFeatureFlagObserver, FeatureFlagObserver>();
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -40,6 +42,37 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<ApplicationDbContext>();
     DbInitializer.Initialize(context);
 }
+
+var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+var observer = app.Services.GetRequiredService<IFeatureFlagObserver>();
+
+Task.Run(async () =>
+{
+    using var scope = scopeFactory.CreateScope();
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    // Surveiller le feature flag "car-visibility" et mettre à jour les voitures
+    await observer.MonitorFeatureFlagAsync("car-visibility", async (isEnabled) =>
+    {
+        if (isEnabled)
+        {
+            // Activer toutes les voitures
+            var cars = await context.Cars.ToListAsync();
+            cars.ForEach(car => car.IsActive = true);
+            await context.SaveChangesAsync();
+        }
+        else
+        {
+            // Désactiver toutes les voitures
+            var cars = await context.Cars.ToListAsync();
+            cars.ForEach(car => car.IsActive = false);
+            await context.SaveChangesAsync();
+        }
+    });
+});
+
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

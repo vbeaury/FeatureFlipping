@@ -14,6 +14,7 @@ public partial class CarList : ComponentBase
     private List<Car>? _cars;
     private List<Car>? _allCars;
     private bool _isLicensePlateFeatureEnabled;
+    private bool _isCarVisibilityFeatureEnabled;
 
     protected override async Task OnInitializedAsync()
     {
@@ -25,6 +26,14 @@ public partial class CarList : ComponentBase
         if (isLicensePlateFeatureEnabled != _isLicensePlateFeatureEnabled)
         {
             _isLicensePlateFeatureEnabled = isLicensePlateFeatureEnabled;
+            StateHasChanged();
+        }
+        
+        var isCarVisibilityFeatureEnabled = await FeatureService.IsFeatureEnabledAsync("car-visibility");
+
+        if (isCarVisibilityFeatureEnabled != _isCarVisibilityFeatureEnabled)
+        {
+            _isCarVisibilityFeatureEnabled = isCarVisibilityFeatureEnabled;
             StateHasChanged();
         }
     }

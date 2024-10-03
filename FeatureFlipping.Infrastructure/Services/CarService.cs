@@ -8,17 +8,21 @@ namespace FeatureFlipping.Infrastructure.Services;
 public class CarService : ICarService
 {
     private readonly ApplicationDbContext _context;
+    private readonly FeatureService _featureService;
 
-    public CarService(ApplicationDbContext context)
+    public CarService(ApplicationDbContext context, FeatureService featureService)
     {
         _context = context;
+        _featureService = featureService;
     }
 
     public async Task<List<Car>?> GetCarsAsync()
     {
+        var isFeatureCarVisibleEnabled = await _featureService.IsFeatureEnabledAsync("car-visibility");
+        
         return await _context.Cars
             .Include(c => c.Manufacturer)
-            .Where(c => c.IsActive)
+            .Where(c => !isFeatureCarVisibleEnabled || c.IsActive)
             .ToListAsync();
     }
 
