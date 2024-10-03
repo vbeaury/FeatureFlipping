@@ -10,7 +10,7 @@ public partial class Contact : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        if (!await FeatureService.IsFeatureEnabledAsync("ContactForm"))
+        if (!await FeatureService.IsFeatureEnabledAsync("contact-form"))
         {
             NavigationManager.NavigateTo("/");
         }

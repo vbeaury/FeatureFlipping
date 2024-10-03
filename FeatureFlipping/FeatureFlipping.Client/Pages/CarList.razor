@@ -2,11 +2,16 @@
 
 <h3>Car List</h3>
 
-<input @onchange="ApplyFilter" placeholder="Filter by License Plate" class="form-control mb-3" />
+@if (_isLicensePlateFeatureEnabled)
+{
+    <input @onchange="ApplyFilter" placeholder="Filter by License Plate" class="form-control mb-3"/>
+}
 
 @if (_cars == null)
 {
-    <p><em>Loading...</em></p>
+    <p>
+        <em>Loading...</em>
+    </p>
 }
 else if (!_cars.Any())
 {
@@ -20,7 +25,10 @@ else
             <th>Model</th>
             <th>Color</th>
             <th>Year</th>
-            <th>License Plate</th>
+            @if(_isLicensePlateFeatureEnabled)
+            {
+                <th>License Plate</th>
+            }
             <th>Manufacturer</th>
         </tr>
         </thead>
@@ -31,7 +39,10 @@ else
                 <td>@car.Model</td>
                 <td>@car.Color</td>
                 <td>@car.Year</td>
-                <td>@car.LicensePlate</td>
+                @if(_isLicensePlateFeatureEnabled)
+                {
+                    <td>@car.LicensePlate</td>
+                }
                 <td>@car.Manufacturer?.Name</td>
             </tr>
         }

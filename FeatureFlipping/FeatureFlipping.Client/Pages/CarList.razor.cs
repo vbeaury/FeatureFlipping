@@ -1,4 +1,5 @@
 using FeatureFlipping.Infrastructure.Database.Entities;
+using FeatureFlipping.Infrastructure.Services;
 using FeatureFlipping.Infrastructure.Services.Interfaces;
 using Microsoft.AspNetCore.Components;
 
@@ -7,14 +8,24 @@ namespace FeatureFlipping.Client.Pages;
 public partial class CarList : ComponentBase
 {
     [Inject] private ICarService CarService { get; set; } = null!;
+    [Inject] private FeatureService FeatureService { get; set; } = null!;
     
     private List<Car>? _cars;
     private List<Car>? _allCars;
+    private bool _isLicensePlateFeatureEnabled;
 
     protected override async Task OnInitializedAsync()
     {
         _allCars = await CarService.GetCarsAsync();
         _cars = _allCars;
+
+        var isLicensePlateFeatureEnabled = await FeatureService.IsFeatureEnabledAsync("license-plate");
+
+        if (isLicensePlateFeatureEnabled != _isLicensePlateFeatureEnabled)
+        {
+            _isLicensePlateFeatureEnabled = isLicensePlateFeatureEnabled;
+            StateHasChanged();
+        }
     }
     
     private void ApplyFilter(ChangeEventArgs e)
