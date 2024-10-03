@@ -7,6 +7,7 @@ public class Car
     public string? LicensePlate { get; set; }
     public string? Color { get; set; }
     public int Year { get; set; }
+    public bool IsActive { get; set; }
 
     // Foreign Key
     public int ManufacturerId { get; set; }

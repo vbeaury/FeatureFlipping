@@ -7,6 +7,7 @@ namespace FeatureFlipping.Client.Pages;
 
 public partial class CarList : ComponentBase
 {
+    [Inject] private NavigationManager NavigationManager { get; set; } = null!;
     [Inject] private ICarService CarService { get; set; } = null!;
     [Inject] private FeatureService FeatureService { get; set; } = null!;
     
@@ -45,5 +46,11 @@ public partial class CarList : ComponentBase
         }
         
         StateHasChanged();
+    }
+
+    private async Task HandleHideCar(int carId)
+    {
+        await CarService.HideCarAsync(carId);
+        NavigationManager.Refresh();
     }
 }

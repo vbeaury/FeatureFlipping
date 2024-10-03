@@ -18,6 +18,18 @@ public class CarService : ICarService
     {
         return await _context.Cars
             .Include(c => c.Manufacturer)
+            .Where(c => c.IsActive)
             .ToListAsync();
+    }
+
+    public async Task HideCarAsync(int carId)
+    {
+        var car = await _context.Cars.FindAsync(carId);
+        
+        if (car is not null)
+        {
+            car.IsActive = false;
+            await _context.SaveChangesAsync();
+        }
     }
 }
