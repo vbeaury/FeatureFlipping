@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureFlipping.Client", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{585852FE-93C8-436A-9DA5-40E29CE3265B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureFlipping.Infrastructure", "FeatureFlipping.Infrastructure\FeatureFlipping.Infrastructure.csproj", "{093B4F71-3C37-4709-A481-278C5C9D7F00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{585852FE-93C8-436A-9DA5-40E29CE3265B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{585852FE-93C8-436A-9DA5-40E29CE3265B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{585852FE-93C8-436A-9DA5-40E29CE3265B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{093B4F71-3C37-4709-A481-278C5C9D7F00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{093B4F71-3C37-4709-A481-278C5C9D7F00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{093B4F71-3C37-4709-A481-278C5C9D7F00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{093B4F71-3C37-4709-A481-278C5C9D7F00}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

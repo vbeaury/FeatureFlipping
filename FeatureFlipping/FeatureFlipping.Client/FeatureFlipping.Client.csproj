@@ -13,6 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\FeatureFlipping.Infrastructure\FeatureFlipping.Infrastructure.csproj" />
       <ProjectReference Include="..\..\Shared\Shared.csproj" />
     </ItemGroup>
 

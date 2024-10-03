@@ -16,6 +16,7 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.FeatureManagement.AspNetCore" Version="3.5.0" />
+        <ProjectReference Include="..\..\FeatureFlipping.Infrastructure\FeatureFlipping.Infrastructure.csproj" />
         <ProjectReference Include="..\..\Shared\Shared.csproj" />
         <ProjectReference Include="..\FeatureFlipping.Client\FeatureFlipping.Client.csproj" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.8" />

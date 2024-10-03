@@ -1,11 +1,10 @@
-using FeatureFlipping.Client.Pages;
 using FeatureFlipping.Components;
-using FeatureFlipping.Database;
+using FeatureFlipping.Infrastructure.Database;
+using FeatureFlipping.Infrastructure.Services;
+using FeatureFlipping.Infrastructure.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 using Microsoft.FeatureManagement;
-using Shared.Services;
-using Shared.Services.Interfaces;
+using _Imports = FeatureFlipping.Client._Imports;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -64,6 +63,6 @@ app.UseAzureAppConfiguration();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(FeatureFlipping.Client._Imports).Assembly);
+    .AddAdditionalAssemblies(typeof(_Imports).Assembly);
 
 app.Run();

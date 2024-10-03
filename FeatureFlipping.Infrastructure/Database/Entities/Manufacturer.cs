@@ -1,4 +1,4 @@
-namespace FeatureFlipping.Database.Entities;
+namespace FeatureFlipping.Infrastructure.Database.Entities;
 
 public class Manufacturer
 {

@@ -1,5 +1,5 @@
+using FeatureFlipping.Infrastructure.Services;
 using Microsoft.AspNetCore.Components;
-using Shared.Services;
 
 namespace FeatureFlipping.Client.Pages;
 

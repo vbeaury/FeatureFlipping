@@ -1,9 +1,9 @@
-using FeatureFlipping.Database;
-using FeatureFlipping.Database.Entities;
+using FeatureFlipping.Infrastructure.Database;
+using FeatureFlipping.Infrastructure.Database.Entities;
+using FeatureFlipping.Infrastructure.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Shared.Services.Interfaces;
 
-namespace Shared.Services;
+namespace FeatureFlipping.Infrastructure.Services;
 
 public class CarService : ICarService
 {
@@ -17,7 +17,7 @@ public class CarService : ICarService
     public async Task<List<Car>?> GetCarsAsync()
     {
         return await _context.Cars
-            .Include(c => c.Manufacturer) // Inclure le fabricant
+            .Include(c => c.Manufacturer)
             .ToListAsync();
     }
 }

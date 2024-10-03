@@ -1,7 +1,6 @@
-using FeatureFlipping.Database.Entities;
+using FeatureFlipping.Infrastructure.Database.Entities;
+using FeatureFlipping.Infrastructure.Services.Interfaces;
 using Microsoft.AspNetCore.Components;
-using Shared.Services;
-using Shared.Services.Interfaces;
 
 namespace FeatureFlipping.Client.Pages;
 

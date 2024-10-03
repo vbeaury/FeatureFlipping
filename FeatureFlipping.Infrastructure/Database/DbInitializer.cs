@@ -1,6 +1,6 @@
-using FeatureFlipping.Database.Entities;
+using FeatureFlipping.Infrastructure.Database.Entities;
 
-namespace FeatureFlipping.Database;
+namespace FeatureFlipping.Infrastructure.Database;
 
 public class DbInitializer
 {
